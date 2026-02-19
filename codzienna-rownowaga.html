@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Codzienna Równowaga — blog o zdrowym stylu życia</title>
+  <meta name="description" content="Edukacyjny blog o codziennych nawykach: zbilansowane odżywianie, ruch, regeneracja i równowaga." />
+
+  <style>
+    :root{
+      --bg:#F5EFE6;
+      --accent:#6BAF6B;
+      --accent-dark:#3E7D3E;
+      --text:#1f2a1f;
+      --muted:#516151;
+      --card:#ffffff;
+      --border:rgba(62,125,62,.18);
+      --shadow: 0 10px 28px rgba(0,0,0,.06);
+      --radius:18px;
+    }
+
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
+
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      color:var(--text);
+      line-height:1.6;
+      background-color: var(--bg);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%233E7D3E' stroke-opacity='0.09' stroke-width='1.2'%3E%3Cpath d='M22 28c10-10 22-8 26 2-10 10-22 8-26-2z'/%3E%3Cpath d='M30 26l10 10'/%3E%3Cpath d='M78 70c10-10 22-8 26 2-10 10-22 8-26-2z'/%3E%3Cpath d='M86 68l10 10'/%3E%3Cpath d='M70 22c8-8 18-6 21 2-8 8-18 6-21-2z'/%3E%3Cpath d='M76 20l8 8'/%3E%3Cpath d='M18 86c8-8 18-6 21 2-8 8-18 6-21-2z'/%3E%3Cpath d='M24 84l8 8'/%3E%3C/g%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 140px 140px;
+    }
+
+    a{ color:var(--accent-dark); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+
+    img, svg{ max-width:100%; height:auto; }
+
+    .container{ max-width:1080px; margin:0 auto; padding:0 20px; }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:10;
+      background:rgba(245,239,230,.92);
+      border-bottom:1px solid var(--border);
+    }
+    @supports ((-webkit-backdrop-filter: blur(8px)) or (backdrop-filter: blur(8px))){
+      header{
+        background:rgba(245,239,230,.85);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+      }
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 0;
+      gap:16px;
+    }
+
+    .logo{
+      height:60px;
+      width:auto;
+      display:block;
+      flex:0 0 auto;
+    }
+
+    .navlinks{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      font-size:14px;
+      color:var(--muted);
+    }
+    .navlinks a{ color:var(--muted); }
+    .navlinks a:hover{ color:var(--accent-dark); }
+
+    /* HERO */
+    .hero{ padding:44px 0 18px; }
+
+    .hero-card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+
+    .hero-img{
+      width:100%;
+      height: clamp(220px, 42vw, 420px);
+      object-fit:cover;
+      display:block;
+      background:rgba(62,125,62,.06);
+    }
+
+    .hero-body{ padding:26px 26px 28px; }
+
+    h1{
+      margin:0 0 8px;
+      font-size:34px;
+      line-height:1.18;
+      letter-spacing:-.3px;
+    }
+
+    .subtitle{
+      margin:0 0 18px;
+      color:var(--muted);
+      font-size:16px;
+      max-width:900px;
+    }
+
+    .note{
+      margin:0;
+      padding:16px 20px;
+      border-left:4px solid var(--accent);
+      background:rgba(107,175,107,.10);
+      border-radius:14px;
+      color:var(--muted);
+      font-size:14px;
+      max-width:900px;
+    }
+
+    section{
+      padding:16px 0;
+      position:relative;
+      scroll-margin-top: 96px; /* fixes anchors under sticky header */
+    }
+
+    section:not(:last-of-type)::after{
+      content:"";
+      display:block;
+      height:1px;
+      margin-top:16px;
+      background:linear-gradient(90deg, rgba(62,125,62,.22), rgba(62,125,62,.06));
+      border-radius:999px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:18px;
+      align-items:start;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      min-width:0; /* helps prevent overflow on small screens */
+    }
+
+    .card-body{ padding:22px; }
+
+    h2{
+      margin:0 0 10px;
+      font-size:22px;
+      letter-spacing:-.2px;
+    }
+
+    .kicker{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      font-size:13px;
+      color:var(--accent-dark);
+      background:rgba(62,125,62,.10);
+      border:1px solid rgba(62,125,62,.18);
+      padding:6px 10px;
+      border-radius:999px;
+      margin-bottom:12px;
+    }
+
+    .img{
+      width:100%;
+      height: clamp(220px, 34vw, 360px);
+      object-fit:cover;
+      display:block;
+      background:rgba(62,125,62,.06);
+    }
+
+    ul.clean{
+      margin:12px 0 0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:10px;
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    ul.clean li{
+      padding-left:14px;
+      position:relative;
+    }
+
+    ul.clean li::before{
+      content:"";
+      width:6px;
+      height:6px;
+      border-radius:999px;
+      background:var(--accent);
+      position:absolute;
+      left:0;
+      top:.72em;
+    }
+
+    .tips{
+      margin-top:16px;
+      display:grid;
+      gap:10px;
+    }
+
+    .tip-card{
+      border:1px solid var(--border);
+      background:rgba(245,239,230,.45);
+      border-radius:14px;
+      padding:12px 14px;
+    }
+
+    .tip-title{
+      font-weight:600;
+      color:var(--text);
+      margin:0 0 4px;
+      font-size:14px;
+    }
+
+    .tip-text{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .info{ padding:10px 0 40px; }
+
+    .info-card{
+      padding:22px;
+      background:rgba(255,255,255,.70);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+    }
+
+    footer{
+      border-top:1px solid var(--border);
+      padding:22px 0 40px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:18px;
+      align-items:start;
+    }
+
+    .policies{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .small{
+      margin-top:10px;
+      color:var(--muted);
+      opacity:.95;
+    }
+
+    @media (max-width: 860px){
+      .grid{ grid-template-columns:1fr; }
+      h1{ font-size:28px; }
+      .logo{ height:36px; }
+      .hero-body{ padding:22px; }
+      .card-body{ padding:18px; }
+    }
+
+    /* Sticky images on desktop */
+    @media (min-width: 861px){
+      #dieta .grid .card:first-child,
+      #aktywnosc .grid .card:last-child,
+      #regeneracja .grid .card:first-child{
+        position: sticky;
+        top: 100px;
+        align-self: start;
+      }
+    }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      *{ scroll-behavior:auto !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+
+        <!-- LOGO: SVG (sign + text) -->
+        <svg class="logo" viewBox="0 0 420 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Codzienna Równowaga">
+          <circle cx="60" cy="60" r="50"
+                  fill="none"
+                  stroke="#6BAF6B"
+                  stroke-width="10"
+                  stroke-linecap="round" />
+          <circle cx="60" cy="42" r="8" fill="#F28C28" />
+          <path d="M32 66
+                   C44 52, 76 52, 88 66
+                   C78 72, 70 86, 66 104
+                   C62 92, 58 84, 60 76
+                   C58 84, 54 92, 50 104
+                   C46 86, 42 72, 32 66 Z"
+                fill="#F28C28" />
+          <text x="130" y="54"
+                font-family="Segoe UI, Arial, sans-serif"
+                font-size="26"
+                font-weight="600"
+                fill="#1f2a1f">Codzienna</text>
+          <text x="130" y="86"
+                font-family="Segoe UI, Arial, sans-serif"
+                font-size="26"
+                font-weight="600"
+                fill="#1f2a1f">Równowaga</text>
+        </svg>
+
+        <nav class="navlinks" aria-label="Nawigacja">
+          <a href="#dieta">Zbilansowana dieta</a>
+          <a href="#aktywnosc">Codzienna aktywność</a>
+          <a href="#regeneracja">Regeneracja</a>
+          <a href="#info">Informacja</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <div class="container hero">
+      <div class="hero-card">
+        <img
+          class="hero-img"
+          src="img/01-hero.jpg"
+          alt="Talerz z naturalnymi produktami i warzywami, widok z góry"
+          decoding="async"
+        />
+
+        <div class="hero-body">
+          <h1>Blog edukacyjny o zdrowym stylu życia</h1>
+          <p class="subtitle">
+            Spokojne i realistyczne podejście do codziennej równowagi: odżywianie, ruch i regeneracja.
+            Bez presji i bez skrajności — tylko proste wskazówki, które można stopniowo wprowadzać do swojego dnia.
+          </p>
+          <p class="note">
+            Zdrowe nawyki budują się w czasie. Regularne posiłki, umiarkowana aktywność, odpowiednia ilość snu
+            i świadomy odpoczynek tworzą podstawę codziennego dobrostanu. Celem bloga jest dzielenie się wiedzą
+            w przystępny sposób i wspieranie zrównoważonych rutyn.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ZBILANSOWANA DIETA -->
+    <section id="dieta">
+      <div class="container">
+        <div class="grid">
+          <div class="card">
+            <img
+              class="img"
+              src="img/02-food.jpg"
+              alt="Widok z góry na różnorodne naturalne produkty: warzywa, owoce, pełnoziarniste zboża, zielenina, orzechy i nasiona. Jasne tło, miękkie światło dzienne, naturalne kolory."
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <div class="kicker">Zbilansowana dieta</div>
+              <h2>Proste zasady, które pomagają w codzienności</h2>
+              <p class="subtitle" style="margin-bottom:10px">
+                Zbilansowanie to najczęściej: różnorodność, regularność i wybór produktów możliwie mało przetworzonych.
+                Bez skrajności i bez „idealnych” planów.
+              </p>
+
+              <ul class="clean">
+                <li>Uwzględniaj różne grupy produktów w ciągu dnia: warzywa, owoce, zboża, źródła białka i tłuszcze.</li>
+                <li>Buduj posiłek „na talerzu”: połowa warzyw, reszta jako dodatki uzupełniające.</li>
+                <li>Nawodnienie jako rutyna — woda w ciągu dnia w spokojnym tempie.</li>
+                <li>Jedz uważnie: bez pośpiechu łatwiej zauważyć sygnały głodu i sytości.</li>
+              </ul>
+
+              <div class="tips" aria-label="Dodatkowe wskazówki">
+                <div class="tip-card">
+                  <p class="tip-title">Małe kroki</p>
+                  <p class="tip-text">Zamiast zmieniać wszystko naraz, wybierz jedną prostą rzecz na tydzień.</p>
+                </div>
+                <div class="tip-card">
+                  <p class="tip-title">Rytm posiłków</p>
+                  <p class="tip-text">Regularność bywa ważniejsza niż perfekcja — spokojny plan dnia robi różnicę.</p>
+                </div>
+                <div class="tip-card">
+                  <p class="tip-title">Prosty talerz</p>
+                  <p class="tip-text">Warzywa jako baza + dodatki uzupełniające. Bez skrajności i bez presji.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CODZIENNA AKTYWNOŚĆ -->
+    <section id="aktywnosc">
+      <div class="container">
+        <div class="grid">
+          <div class="card">
+            <div class="card-body">
+              <div class="kicker">Codzienna aktywność</div>
+              <h2>Ruch w wersji „do zrobienia”, nie „do udowodnienia”</h2>
+              <p class="subtitle" style="margin-bottom:10px">
+                Regularne, umiarkowane poruszanie się może być elementem dnia tak samo naturalnym jak posiłki czy przerwy.
+                Liczy się powtarzalność i komfort.
+              </p>
+
+              <ul class="clean">
+                <li>Spacer w ciągu dnia: krótki, ale systematyczny.</li>
+                <li>Łagodne rozciąganie rano lub wieczorem po dłuższym siedzeniu.</li>
+                <li>Mikro-ruch: schody, krótka przerwa co jakiś czas, kilka minut rozruszania.</li>
+                <li>Różne formy w tygodniu: spokojne i bardziej dynamiczne — według możliwości.</li>
+              </ul>
+
+              <div class="tips" aria-label="Dodatkowe wskazówki">
+                <div class="tip-card">
+                  <p class="tip-title">Ruch “w tle”</p>
+                  <p class="tip-text">Kilka minut co jakiś czas bywa łatwiejsze niż długie treningi.</p>
+                </div>
+                <div class="tip-card">
+                  <p class="tip-title">Komfort</p>
+                  <p class="tip-text">Wybieraj formy, które są realne do powtarzania — to zwykle działa najdłużej.</p>
+                </div>
+                <div class="tip-card">
+                  <p class="tip-title">Spacer jako baza</p>
+                  <p class="tip-text">Spokojny spacer to jedna z najbardziej neutralnych, codziennych opcji.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="card">
+            <img
+              class="img"
+              src="img/03-walking.jpg"
+              alt="Osoba spacerująca w parku w naturalnym świetle porannym, spokojna atmosfera, zieleń i otwarta przestrzeń."
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REGENERACJA -->
+    <section id="regeneracja">
+      <div class="container">
+        <div class="grid">
+          <div class="card">
+            <img
+              class="img"
+              src="img/04-book.jpg"
+              alt="Kubek herbaty w spokojnym, przytulnym wnętrzu z miękkim światłem dziennym. Naturalna, ciepła atmosfera sprzyjająca odpoczynkowi."
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <div class="kicker">Regeneracja i redukcja stresu</div>
+              <h2>Odpoczynek i równowaga cyfrowa</h2>
+              <p class="subtitle" style="margin-bottom:10px">
+                Regeneracja wspiera codzienny rytm — zwykle najlepiej działają proste, powtarzalne rzeczy:
+                sen, przerwy, spokojne aktywności i higiena informacji.
+              </p>
+
+              <ul class="clean">
+                <li>Stałe pory snu (na ile to możliwe) i łagodna rutyna wieczorna.</li>
+                <li>Krótki „detoks ekranowy”: przerwy od telefonu i powiadomień w ciągu dnia.</li>
+                <li>Relaks bez presji: książka, ciepły napój, spacer, spokojna muzyka.</li>
+                <li>Planowanie odpoczynku jak spotkań — żeby naprawdę znalazł się na niego czas.</li>
+              </ul>
+
+              <div class="tips" aria-label="Dodatkowe wskazówki">
+                <div class="tip-card">
+                  <p class="tip-title">Wieczorny reset</p>
+                  <p class="tip-text">Krótka rutyna przed snem pomaga “domknąć” dzień w spokojnym tempie.</p>
+                </div>
+                <div class="tip-card">
+                  <p class="tip-title">Cisza informacyjna</p>
+                  <p class="tip-text">Przerwy od powiadomień to prosty sposób na cyfrową równowagę.</p>
+                </div>
+                <div class="tip-card">
+                  <p class="tip-title">Odpoczynek bez planu</p>
+                  <p class="tip-text">Czasem najlepsze jest najprostsze: herbata, książka, spokojna muzyka.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INFORMACJA OGÓLNA -->
+    <section id="info" class="info">
+      <div class="container">
+        <div class="info-card">
+          <h2 style="margin:0 0 8px;">Informacja ogólna</h2>
+          <p class="subtitle" style="margin:0;">
+            Treści na tej stronie mają charakter edukacyjny i bazują na powszechnie dostępnych zaleceniach
+            dotyczących zdrowych nawyków, zbilansowanego odżywiania, aktywności i regeneracji.
+            Strona nie zastępuje indywidualnej konsultacji ze specjalistą.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="policies">
+            <!-- IMPORTANT: relative links so it works when you send the folder -->
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms-of-use.html">Terms of Use</a>
+            <a href="cookie-policy.html">Cookie Policy</a>
+            <a href="mailto:info@yourdomain.com">Contact email</a>
+          </div>
+
+          <div class="small">
+            © 2026 Codzienna Równowaga<br />
+            Contact: <a href="mailto:info@yourdomain.com">info@yourdomain.com</a>
+          </div>
+
+          <div class="small" style="margin-top:12px;">
+            This site is intended for informational purposes only.
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
